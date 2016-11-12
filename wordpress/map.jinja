@@ -14,4 +14,9 @@
         'www_group': 'apache',
         'www_user': 'apache',
     },
-}, merge=salt['pillar.get']('wordpress:lookup')) %}
+    'Suse': {
+        'docroot': '/srv/www/htdocs',
+        'www_group': 'www',
+        'www_user': 'wwwrun',
+    },
+}, merge=salt['pillar.getet']('wordpress:lookup')) %}
