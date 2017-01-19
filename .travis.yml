@@ -30,9 +30,10 @@ env:
 # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
 before_script: 
   - sudo iptables -L DOCKER || sudo iptables -N DOCKER
-  - sudo apt-get install php5-mysql
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS siteAdb;'
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS siteBdb;'  
+  - sudo apt-get install git
+  - git clone https://github.com/saltstack-formulas/apache-formula.git /tmp/kitchen/srv/salt/apache
+  - git clone https://github.com/saltstack-formulas/php-formula.git /tmp/kitchen/srv/salt/php
+  - git clone https://github.com/saltstack-formulas/mysql-formula.git /tmp/kitchen/srv/salt/mysql
 
 install:
   # setup ci for test formula
