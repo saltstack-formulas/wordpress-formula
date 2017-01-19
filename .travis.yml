@@ -30,7 +30,7 @@ env:
 # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
 before_script: 
   - sudo iptables -L DOCKER || sudo iptables -N DOCKER
-  - sudo apt-get install git
+  - sudo apt-get install git sendmail
   - git clone https://github.com/saltstack-formulas/apache-formula.git /tmp/apache
   - git clone https://github.com/saltstack-formulas/php-formula.git /tmp/php
   - git clone https://github.com/saltstack-formulas/mysql-formula.git /tmp/mysql
