@@ -157,7 +157,9 @@ provisioner:
                   dbpass: siteBdbpass
                   url: http://siteB.com
                   title: 'siteB title'
-                  email: siteB@email.com                     
+                  email: siteB@email.com
+      lookup:
+        docroot: /var/html  
 
 suites:
   - name: high
