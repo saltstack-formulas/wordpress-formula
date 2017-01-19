@@ -1,9 +1,14 @@
-{% set map = salt['grains.filter_by']({
-    'default': {
-        'docroot': '/www/html',
-        'www_group': 'www-data',
-        'www_user': 'www-data',
-    },
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{## Start with  defaults from defaults.sls ##}
+{% import_yaml 'wordpress/defaults.yaml' as default_settings %}
+
+{##
+Setup variable using grains['os_family'] based logic, only add key:values here
+that differ from whats in defaults.yaml
+##}
+{% set os_family_map = salt['grains.filter_by']({
     'Debian': {
         'docroot': '/www/html',
         'www_group': 'www-data',
@@ -19,4 +24,17 @@
         'www_group': 'www',
         'www_user': 'wwwrun',
     },
-}, merge=salt['pillar.get']('wordpress:lookup')) %}
+  }
+  , grain="os_family"
+  , merge=salt['pillar.get']('wordpress:lookup'))
+%}
+{## Merge the flavor_map to the default settings ##}
+{% do default_settings.wordpress.update(os_family_map) %}
+
+{## Merge in wordpress:lookup pillar ##}
+{% set wordpress = salt['pillar.get'](
+        'wordpress',
+        default=default_settings.wordpress,
+        merge=True
+    )
+%}

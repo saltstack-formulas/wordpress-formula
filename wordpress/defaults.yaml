@@ -1,0 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+wordpress:
+  docroot: '/www/html'
+  www_group: 'www-data'
+  www_user: 'www-data'
