@@ -27,9 +27,9 @@ provisioner:
   is_file_root: false
   formula: wordpress
   dependencies: 
-    - {name: php, path: ../php-formula}
-    - {name: apache, path: ../apache-formula}
-    - {name: mysql, path: ../mysql-formula}
+    - {name: php, path: ../php}
+    - {name: apache, path: ../apache}
+    - {name: mysql, path: ../mysql}
   pillars:
     top.sls:
       base:
