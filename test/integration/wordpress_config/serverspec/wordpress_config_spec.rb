@@ -5,7 +5,7 @@ set :backend, :exec
 
 describe 'wordpress configuration' do
 
-    configs = ['/www/html/sitenameA.com/wp-config.php', '/www/html/sitenameB.com/wp-config.php']
+    configs = ['/var/html/sitenameA.com/wp-config.php', '/var/html/sitenameB.com/wp-config.php']
 
     configs.each do |config|
         describe file(config) do

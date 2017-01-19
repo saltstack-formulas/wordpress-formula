@@ -18,7 +18,6 @@ platforms:
   - name: debian-7
   - name: debian-8
   - name: centos-6
-  - name: centos-7
 
 provisioner:
   name: salt_solo
@@ -159,7 +158,7 @@ provisioner:
                   title: 'siteB title'
                   email: siteB@email.com
       lookup:
-        docroot: /var/html  
+        docroot: /var/html
 
 suites:
   - name: high
@@ -185,4 +184,4 @@ suites:
       state_top:
         base:
           '*':
-            - wordpress.config            
+            - wordpress.config
