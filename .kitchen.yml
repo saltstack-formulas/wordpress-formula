@@ -184,4 +184,10 @@ suites:
       state_top:
         base:
           '*':
+            - apache
+            - apache.config
+            - apache.vhosts.standard
+            - php.ng
+            - php.ng.mysql
+            - mysql            
             - wordpress.config
