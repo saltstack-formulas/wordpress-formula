@@ -178,7 +178,7 @@ suites:
       state_top:
         base:
           '*':
-            - wordpress.cli            
+            - wordpress.cli          
   - name: wordpress_config
     provisioner:
       state_top:
@@ -190,4 +190,5 @@ suites:
             - php.ng
             - php.ng.mysql
             - mysql            
+            - wordpress.cli          
             - wordpress.config
