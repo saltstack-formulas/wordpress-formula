@@ -10,7 +10,7 @@ that differ from whats in defaults.yaml
 ##}
 {% set os_family_map = salt['grains.filter_by']({
     'Debian': {
-        'docroot': '/www/html',
+        'docroot': '/var/html',
         'www_group': 'www-data',
         'www_user': 'www-data',
     },
