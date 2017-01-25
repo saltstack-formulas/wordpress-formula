@@ -3,5 +3,5 @@
 include:
   - wordpress.cli
   - wordpress.download
-  - wordpress.install
   - wordpress.config
+  - wordpress.install
