@@ -1,12 +1,5 @@
 {% from "wordpress/map.jinja" import wordpress with context %}
 
-{% if high_state is defined %}
-include:
-  - wordpress.cli
-  - wordpress.download
-  - wordpress.install
-{% endif %}
-
 {% for id, site in pillar['wordpress']['sites'].items() %}
 
 # This command tells wp-cli to create our wp-config.php, DB info needs to be the same as above

@@ -190,5 +190,7 @@ suites:
             - php.ng
             - php.ng.mysql
             - mysql            
-            - wordpress.cli          
+            - wordpress.cli      
+            - wordpress.download
+            - wordpress.install      
             - wordpress.config

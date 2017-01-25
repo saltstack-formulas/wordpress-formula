@@ -1,10 +1,5 @@
 {% from "wordpress/map.jinja" import wordpress with context %}
 
-{% if high_state is defined %}
-include:
-  - wordpress.cli
-{% endif %}
-
 {% for id, site in salt['pillar.get']('wordpress:sites', {}).items() %}
 {{ wordpress.docroot }}/{{ id }}:
   file.directory:
