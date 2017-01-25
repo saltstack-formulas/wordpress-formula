@@ -41,7 +41,6 @@ describe 'wordpress configuration' do
       it { should contain "localhost" }
       it { should contain "dbuser" }
       it { should contain "dbpass" }
-      it { should contain "@email.com" }
     end
   end
 
