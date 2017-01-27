@@ -26,10 +26,22 @@ Install and configure WordPress sites
 Installs wp-cli
 
 
+``wordpress.download``
+-------------
+
+Download WordPress
+
+
 ``wordpress.config``
 -------------
 
 Configure WordPress sites
+
+
+``wordpress.install``
+-------------
+
+Install WordPress sites
 
 Pillar customizations:
 ======================
