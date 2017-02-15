@@ -18,7 +18,6 @@ platforms:
   - name: debian-7
   - name: debian-8
   - name: centos-6
-  - name: centos-7
 
 provisioner:
   name: salt_solo
@@ -27,9 +26,9 @@ provisioner:
   is_file_root: false
   formula: wordpress
   dependencies: 
-    - {name: php, path: ../php}
-    - {name: apache, path: ../apache}
-    - {name: mysql, path: ../mysql}
+    - {name: php, path: /tmp/php}
+    - {name: apache, path: /tmp/apache}
+    - {name: mysql, path: /tmp/mysql}
   pillars:
     top.sls:
       base:
@@ -157,10 +156,12 @@ provisioner:
                   dbpass: siteBdbpass
                   url: http://siteB.com
                   title: 'siteB title'
-                  email: siteB@email.com                     
+                  email: siteB@email.com
+      lookup:
+        docroot: /var/html
 
 suites:
-  - name: default
+  - name: wordpress_high
     provisioner:
       state_top:
         base:
@@ -172,3 +173,25 @@ suites:
             - php.ng.mysql
             - mysql
             - wordpress
+  - name: wordpress_cli
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - apache
+            - wordpress.cli          
+  - name: wordpress_config
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - apache
+            - apache.config
+            - apache.vhosts.standard
+            - php.ng
+            - php.ng.mysql
+            - mysql            
+            - wordpress.cli      
+            - wordpress.download
+            - wordpress.config
+            - wordpress.install      
