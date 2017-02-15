@@ -1,18 +1,24 @@
 ---
 driver:
-  name: vagrant
-  # name: docker
-  # binary: /usr/bin/docker
-  # use_sudo: false
-  # remove_images: true
-  # build_context: '.'
+  name: docker
+  hostname: salt-formula.ci.local
+  use_sudo: false
+  require_chef_omnibus: false
+
+driver_config:
+  cap_add:
+  - SYS_PTRACE
+
+# verifier:
+#   name: inspec
 
 platforms:
-  - name: debian-jessie64
-  # - name: ubuntu-14.04-minimal
-    driver_config:
-      box: ssplatt/salt-deb-8
-      # box: saltstack/ubuntu-14.04-minimal
+  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+  - name: debian-7
+  - name: debian-8
+  - name: centos-6
+  - name: centos-7
 
 provisioner:
   name: salt_solo
@@ -21,9 +27,9 @@ provisioner:
   is_file_root: false
   formula: wordpress
   dependencies: 
-    - {name: php, path: ../php-formula}
-    - {name: apache, path: ../apache-formula}
-    - {name: mysql, path: ../mysql-formula}
+    - {name: php, path: ../php}
+    - {name: apache, path: ../apache}
+    - {name: mysql, path: ../mysql}
   pillars:
     top.sls:
       base:

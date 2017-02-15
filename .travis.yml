@@ -1,0 +1,43 @@
+language: php
+
+rvm:
+  - 2.2.5
+
+sudo: required
+services: 
+  - docker
+  - mysql
+  - apache
+
+env:
+  matrix:
+  - INSTANCE: high-ubuntu-1404 
+  - INSTANCE: high-ubuntu-1604 
+  - INSTANCE: high-debian-7    
+  - INSTANCE: high-debian-8    
+  - INSTANCE: high-centos-6    
+  - INSTANCE: cli-ubuntu-1404
+  - INSTANCE: cli-ubuntu-1604
+  - INSTANCE: cli-debian-7   
+  - INSTANCE: cli-debian-8   
+  - INSTANCE: cli-centos-6   
+  - INSTANCE: config-ubuntu-1404 
+  - INSTANCE: config-ubuntu-1604 
+  - INSTANCE: config-debian-7    
+  - INSTANCE: config-debian-8    
+  - INSTANCE: config-centos-6    
+
+# https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
+before_script: 
+  - sudo iptables -L DOCKER || sudo iptables -N DOCKER
+  - sudo apt-get install git
+  - git clone https://github.com/saltstack-formulas/apache-formula.git /tmp/kitchen/srv/salt/apache
+  - git clone https://github.com/saltstack-formulas/php-formula.git /tmp/kitchen/srv/salt/php
+  - git clone https://github.com/saltstack-formulas/mysql-formula.git /tmp/kitchen/srv/salt/mysql
+
+install:
+  # setup ci for test formula
+  - export BUNDLE_GEMFILE=$PWD/Gemfile
+  - bundle install
+
+script: bundle exec kitchen verify ${INSTANCE}
