@@ -25,11 +25,16 @@ Install and configure WordPress sites
 
 Installs wp-cli
 
-
 ``wordpress.config``
 -------------
 
 Configure WordPress sites
+
+``wordpress.plugin``
+-------------
+
+Installs Wordpress plugins
+
 
 Pillar customizations:
 ======================
@@ -47,7 +52,8 @@ Pillar customizations:
               url: http://example.ie
               title: 'My Blog'
               email: 'john.doe@acme.com'       
-
+              plugins:
+                - '<plugin-name>'
 Formula Dependencies
 ====================
 
