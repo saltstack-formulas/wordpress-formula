@@ -1,6 +1,7 @@
 {% from "wordpress/map.jinja" import map with context %}
 {% for name, site in pillar['wordpress']['sites'].items() %}
-  {% for plugin_name in pillar['wordpress']['sites'][name]['plugins'] %}  
+  {% if 'plugins' in pillar['wordpress']['sites'][name] %}
+    {% for plugin_name in pillar['wordpress']['sites'][name]['plugins'] %}  
 
 configure_plugin_{{ plugin_name }}:
  cmd.run:
@@ -10,5 +11,6 @@ configure_plugin_{{ plugin_name }}:
   - unless: '/usr/local/bin/wp plugin is-installed {{ plugin_name }}'
   
 
-  {% endfor %}
+    {% endfor %}
+  {% endif %}
 {% endfor %}
