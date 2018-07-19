@@ -6,6 +6,7 @@ configure:
  cmd.run:
   - name: '/usr/local/bin/wp core config --dbhost={{ site.dbhost }} --dbname={{ site.database }} --dbuser={{ site.dbuser }} --dbpass={{ site.dbpass }}'
   - cwd: {{ map.docroot }}/{{ name }}
-  - user: {{ map.www_user }}
+  - runas: {{ map.www_user }}
+  - unless: test -f {{ map.docroot }}/{{ name }}/wp-config.php
 
 {% endfor %}

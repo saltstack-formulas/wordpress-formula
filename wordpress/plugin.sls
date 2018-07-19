@@ -7,9 +7,9 @@ configure_plugin_{{ plugin_name }}:
  cmd.run:
   - name: '/usr/local/bin/wp plugin install --activate {{ plugin_name }}'
   - cwd: {{ map.docroot }}/{{ name }}
-  - user: {{ map.www_user }}
+  #- user: {{ map.www_user }}
+  - runas: {{ map.www_user }}
   - unless: '/usr/local/bin/wp plugin is-installed {{ plugin_name }}'
-  
 
     {% endfor %}
   {% endif %}
