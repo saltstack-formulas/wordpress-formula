@@ -27,9 +27,9 @@ provisioner:
   is_file_root: false
   formula: wordpress
   dependencies: 
-    - {name: php, path: ../php}
-    - {name: apache, path: ../apache}
-    - {name: mysql, path: ../mysql}
+    - {name: php, path: /tmp/php}
+    - {name: apache, path: /tmp/apache}
+    - {name: mysql, path: /tmp/mysql}
   pillars:
     top.sls:
       base:
@@ -160,7 +160,7 @@ provisioner:
                   email: siteB@email.com                     
 
 suites:
-  - name: default
+  - name: high
     provisioner:
       state_top:
         base:
@@ -172,3 +172,15 @@ suites:
             - php.ng.mysql
             - mysql
             - wordpress
+  - name: wordpress_cli
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - wordpress.cli            
+  - name: wordpress_config
+    provisioner:
+      state_top:
+        base:
+          '*':
+            - wordpress.config            
