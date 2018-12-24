@@ -8,6 +8,7 @@ group :integration do
   gem 'test-kitchen'
   gem 'kitchen-salt'
   gem 'kitchen-inspec'
+  gem 'kitchen-verifier-serverspec'
 end
 
 group :docker do

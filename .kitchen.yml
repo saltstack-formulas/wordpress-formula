@@ -167,7 +167,7 @@ provisioner:
                   email: siteB@email.com
 
 verifier:
-  name: inspec
+  name: serverspec
   sudo: true
   reporter:
     - cli
