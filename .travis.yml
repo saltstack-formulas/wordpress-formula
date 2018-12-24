@@ -1,9 +1,10 @@
+sudo: required
+cache: bundler
 language: php
 
 rvm:
   - 2.2.5
 
-sudo: required
 services:
   - docker
   - mysql

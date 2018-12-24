@@ -2,23 +2,29 @@
 driver:
   name: docker
   hostname: salt-formula.ci.local
-  use_sudo: false
-  require_chef_omnibus: false
 
 driver_config:
+  use_sudo: true
+  privileged: true
+  provision_command: mkdir -p /run/sshd
+  run_command: /lib/systemd/systemd
+  require_chef_omnibus: false
   cap_add:
-  - SYS_PTRACE
-
-# verifier:
-#   name: inspec
+    - SYS_PTRACE
 
 platforms:
-  - name: ubuntu-16.04
   - name: ubuntu-18.04
-  - name: debian-8
+    driver_config:
+      provision_command:
+        - apt-get install udev net-tools -y
   - name: debian-9
-  - name: centos-6
+    driver_config:
+      provision_command:
+        - apt-get install udev net-tools -y
   - name: centos-7
+    driver_config:
+      provision_command:
+        - yum install udev net-tools -y
 
 provisioner:
   name: salt_solo
@@ -27,6 +33,9 @@ provisioner:
   require_chef: false
   # data_path: test/shared
   is_file_root: false
+  salt_copy_filter:
+    - .kitchen
+    - .git
   formula: wordpress
   dependencies:
     - {name: php, path: /tmp/php}
