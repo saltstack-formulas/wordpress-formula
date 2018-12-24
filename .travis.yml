@@ -12,23 +12,14 @@ services:
 
 env:
   matrix:
-  - INSTANCE: high-ubuntu-1604
   - INSTANCE: high-ubuntu-1804
-  - INSTANCE: high-debian-8
   - INSTANCE: high-debian-9
-  - INSTANCE: high-centos-6
   - INSTANCE: high-centos-7
-  - INSTANCE: cli-ubuntu-1604
   - INSTANCE: cli-ubuntu-1804
-  - INSTANCE: cli-debian-8
   - INSTANCE: cli-debian-9
-  - INSTANCE: cli-centos-6
   - INSTANCE: cli-centos-7
-  - INSTANCE: config-ubuntu-1604
   - INSTANCE: config-ubuntu-1804
-  - INSTANCE: config-debian-8
   - INSTANCE: config-debian-9
-  - INSTANCE: config-centos-6
   - INSTANCE: config-centos-7
 
 # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
