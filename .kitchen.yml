@@ -13,20 +13,22 @@ driver_config:
 #   name: inspec
 
 platforms:
-  - name: ubuntu-14.04
   - name: ubuntu-16.04
-  - name: debian-7
+  - name: ubuntu-18.04
   - name: debian-8
+  - name: debian-9
   - name: centos-6
   - name: centos-7
 
 provisioner:
   name: salt_solo
-  salt_version: 2015.8.8
+  salt_version: latest
+  log_level: info
+  require_chef: false
   # data_path: test/shared
   is_file_root: false
   formula: wordpress
-  dependencies: 
+  dependencies:
     - {name: php, path: /tmp/php}
     - {name: apache, path: /tmp/apache}
     - {name: mysql, path: /tmp/mysql}
@@ -37,7 +39,7 @@ provisioner:
           - apache
           - php
           - mysql
-          - wordpress 
+          - wordpress
     apache.sls:
       apache:
         sites:
@@ -96,7 +98,7 @@ provisioner:
                     listen: /var/run/php5-fpm.sock
                     listen.owner: www-data
                     listen.group: www-data
-                    listen.mode: 0660              
+                    listen.mode: 0660
                     pm: ondemand
                     pm.max_children: 5
                     pm.start_servers: 3
@@ -131,7 +133,7 @@ provisioner:
             host: localhost
             databases:
               - database: siteBdb
-                grants: ['all privileges']            
+                grants: ['all privileges']
     wordpress.sls:
       wordpress:
           cli:
@@ -158,7 +160,7 @@ provisioner:
                   dbpass: siteBdbpass
                   url: http://siteB.com
                   title: 'siteB title'
-                  email: siteB@email.com                     
+                  email: siteB@email.com
 
 suites:
   - name: high
@@ -178,10 +180,10 @@ suites:
       state_top:
         base:
           '*':
-            - wordpress.cli            
+            - wordpress.cli
   - name: wordpress_config
     provisioner:
       state_top:
         base:
           '*':
-            - wordpress.config            
+            - wordpress.config
