@@ -171,8 +171,6 @@ verifier:
   sudo: true
   reporter:
     - cli
-  inspec_tests:
-    - path: test/integration
 
 suites:
   - name: high
