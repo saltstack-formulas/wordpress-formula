@@ -4,13 +4,10 @@ driver:
   hostname: salt-formula.ci.local
 
 driver_config:
-  use_sudo: true
+  use_sudo: false
   privileged: true
   provision_command: mkdir -p /run/sshd
   run_command: /lib/systemd/systemd
-  require_chef_omnibus: false
-  cap_add:
-    - SYS_PTRACE
 
 platforms:
   - name: ubuntu-18.04
@@ -31,12 +28,10 @@ provisioner:
   salt_version: latest
   log_level: info
   require_chef: false
-  # data_path: test/shared
-  is_file_root: false
+  formula: wordpress
   salt_copy_filter:
     - .kitchen
     - .git
-  formula: wordpress
   dependencies:
     - {name: php, path: /tmp/php}
     - {name: apache, path: /tmp/apache}
@@ -170,6 +165,14 @@ provisioner:
                   url: http://siteB.com
                   title: 'siteB title'
                   email: siteB@email.com
+
+verifier:
+  name: inspec
+  sudo: true
+  reporter:
+    - cli
+  inspec_tests:
+    - path: test/integration
 
 suites:
   - name: high
