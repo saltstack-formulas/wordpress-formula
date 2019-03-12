@@ -15,7 +15,7 @@ configure_plugin_{{ plugin_name }}:
   {% endif %}
 
   {% if 'plugins_url' in pillar['wordpress']['sites'][name] %}
-    {% for plugin_name, info in pillar['wordpress']['sites'][name]['plugins_url'].iteritems() %}
+    {% for plugin_name, info in pillar['wordpress']['sites'][name]['plugins_url'].items() %}
 
 configure_plugin_{{ info.name }}:
  cmd.run:
