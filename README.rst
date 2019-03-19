@@ -57,6 +57,10 @@ Pillar customizations:
           email: 'john.doe@acme.com'
           plugins:
             - '<plugin-name>'
+          plugins_url:
+            '<plugin-name>':
+              url: '<url-to-obtain-plugin-zipfile>'
+              name: '<plugin-name>'
 
 Formula Dependencies
 ====================

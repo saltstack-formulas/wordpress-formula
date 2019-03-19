@@ -26,5 +26,9 @@ wordpress:
             email: siteB@email.com
             plugins:
               - '<plugin-name>'
+            plugins_url:
+                '<plugin-name>':
+                    url: '<url-to-obtain-plugin-zipfile>'
+                    name: '<plugin-name>'
     lookup:
-        docroot: /var/html           
+        docroot: /var/html
